@@ -2,21 +2,28 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Record = (props) => (
- <tr>
-   <td>{props.record.name}</td>
-   <td>{props.record.position}</td>
-   <td>{props.record.level}</td>
-   <td>
-     <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
-     <button className="btn btn-link"
-       onClick={() => {
-         props.deleteRecord(props.record._id);
-       }}
-     >
-       Delete
-     </button>
-   </td>
- </tr>
+  <tr>
+    <td>{props.record.name}</td>
+    <td>{props.record.position}</td>
+    <td>{props.record.level}</td>
+    <td>
+      <Link
+        className="btn btn-link"
+        to={`${process.env.REACT_APP_API_URL}/edit/${props.record._id}`}
+      >
+        Edit
+      </Link>{' '}
+      |
+      <button
+        className="btn btn-link"
+        onClick={() => {
+          props.deleteRecord(props.record._id);
+        }}
+      >
+        Delete
+      </button>
+    </td>
+  </tr>
 );
 
 export default function RecordList() {
@@ -25,7 +32,9 @@ export default function RecordList() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`http://localhost:5050/record/`);
+     const response = await fetch(
+       `${process.env.REACT_APP_API_URL}/record/`
+     );
 
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -44,8 +53,8 @@ export default function RecordList() {
 
  // This method will delete a record
  async function deleteRecord(id) {
-   await fetch(`http://localhost:5050/record/${id}`, {
-     method: "DELETE"
+   await fetch(`${process.env.REACT_APP_API_URL}/record/${id}`, {
+     method: 'DELETE',
    });
 
    const newRecords = records.filter((el) => el._id !== id);

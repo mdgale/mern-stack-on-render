@@ -1,9 +1,8 @@
 # mern-stack-example
-Mern Stack code for the [Mern Tutorial](https://www.mongodb.com/languages/mern-stack-tutorial)
+Forked Mern Stack code for the [Mern Tutorial](https://www.mongodb.com/languages/mern-stack-tutorial)
 
-[![CI](https://github.com/mongodb-developer/mern-stack-example/actions/workflows/main.yaml/badge.svg)](https://github.com/mongodb-developer/mern-stack-example/actions/workflows/main.yaml)
 
-## How To Run
+## How To Run The Express Server
 Create the file `mern/server/config.env` with your Atlas URI and the server port:
 ```
 ATLAS_URI=mongodb+srv://<username>:<password>@sandbox.jadwj.mongodb.net/
@@ -14,6 +13,12 @@ Start server:
 cd mern/server
 npm install
 npm start
+```
+
+## How To Run The React App
+Create the file `mern/clint/.env` with your local server port:
+```
+REACT_APP_API_URL=http://localhost:5050
 ```
 
 Start Web server
